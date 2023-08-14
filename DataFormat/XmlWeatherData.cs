@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace Weather_Monitoring.Data
+namespace Weather_Monitoring.DataFormat
 {
     [XmlRoot("WeatherData", Namespace = "")]
 
@@ -11,7 +11,7 @@ namespace Weather_Monitoring.Data
             var serializer = new XmlSerializer(typeof(XmlWeatherData));
             using (TextReader reader = new StringReader(xml))
             {
-                XmlWeatherData weatherData = (XmlWeatherData)serializer.Deserialize(reader);
+                var weatherData = (XmlWeatherData)serializer.Deserialize(reader);
                 return weatherData;
             }
         }

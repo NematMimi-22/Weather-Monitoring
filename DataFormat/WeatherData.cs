@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace Weather_Monitoring.Data
+namespace Weather_Monitoring.DataFormat
 {
     [XmlRoot("WeatherData", Namespace = "")]
 

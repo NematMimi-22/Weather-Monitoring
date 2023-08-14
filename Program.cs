@@ -1,4 +1,5 @@
-﻿using Weather_Monitoring.Data;
+﻿using Weather_Monitoring.Bots;
+using Weather_Monitoring.DataFormat;
 namespace Weather_Monitoring
 {
     public class Program
@@ -7,14 +8,14 @@ namespace Weather_Monitoring
         {
             Console.WriteLine("Enter JSON data:");
             var jsonInput = Console.ReadLine();
-            JSONWeatherData jsonweatherData = JSONWeatherData.FromJson(jsonInput);
+            var jsonweatherData = JSONWeatherData.FromJson(jsonInput);
             Console.WriteLine($"Location: {jsonweatherData.Location}");
             Console.WriteLine($"Temperature: {jsonweatherData.Temperature}");
             Console.WriteLine($"Humidity: {jsonweatherData.Humidity}");
          
             Console.WriteLine("Enter JSON data:");
             var xmlInput = Console.ReadLine();
-            XmlWeatherData xmlweatherData = XmlWeatherData.FromXml(xmlInput);
+            var xmlweatherData = XmlWeatherData.FromXml(xmlInput);
             Console.WriteLine($"Location: {xmlweatherData.Location}");
             Console.WriteLine($"Temperature: {xmlweatherData.Temperature}");
             Console.WriteLine($"Humidity: {xmlweatherData.Humidity}");

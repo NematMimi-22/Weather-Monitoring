@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Weather_Monitoring.Data
+namespace Weather_Monitoring.DataFormat
 {
     public class JSONWeatherData : WeatherData
     {
