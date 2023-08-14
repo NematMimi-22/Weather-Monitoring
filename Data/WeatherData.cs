@@ -1,5 +1,9 @@
-﻿namespace Weather_Monitoring.Data
+﻿using System.Xml.Serialization;
+
+namespace Weather_Monitoring.Data
 {
+    [XmlRoot("WeatherData", Namespace = "")]
+
     public abstract class WeatherData
     {
         public string Location { get; set; }

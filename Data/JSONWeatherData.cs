@@ -7,6 +7,7 @@ namespace Weather_Monitoring.Data
         public static JSONWeatherData FromJson(string json)
         {
             var weatherData = JsonConvert.DeserializeObject<JSONWeatherData>(json);
+
             return weatherData;
         }
     }
