@@ -19,6 +19,18 @@ namespace Weather_Monitoring
             Console.WriteLine($"Location: {xmlweatherData.Location}");
             Console.WriteLine($"Temperature: {xmlweatherData.Temperature}");
             Console.WriteLine($"Humidity: {xmlweatherData.Humidity}");
+       
+            string configFile = @"C:\Users\Nemat\source\repos\Weather-Monitoring\config.json";
+            List<BaseBot> botConfigs = ConfigReader.ReadConfig(configFile);
+
+            foreach (var botConfig in botConfigs)
+            {
+                Console.WriteLine($"Name: {botConfig.Name}");
+                Console.WriteLine($"Enabled: {botConfig.Enabled}");
+                Console.WriteLine($"Threshold: {botConfig.Threshold}");
+                Console.WriteLine($"Message: {botConfig.Message}");
+                Console.WriteLine();
+            }
         }
     }
 }
