@@ -1,12 +1,19 @@
-﻿namespace Weather_Monitoring.Bots
+﻿using Weather_Monitoring.DataFormat;
+
+namespace Weather_Monitoring.Bots
 {
     public class RainBot : BaseBot
     {
-        public int humidityThreshold = 80; // 80 just for test
+        public int humidityThreshold; 
+
+        public override bool IsActivated(WeatherData weatherData)
+        {
+            return weatherData.Humidity > humidityThreshold;
+        }
 
         public override void PerformAction()
         {
-            Console.WriteLine($"RainBot activated due to high humidity ({humidityThreshold}%).");
+            Console.WriteLine($"RainBot activated");
         }
     }
 }
