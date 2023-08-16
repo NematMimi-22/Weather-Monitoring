@@ -5,9 +5,9 @@ namespace Weather_Monitoring.Bots
     public class BaseBot
     {
         public string Name { get;  set; }
-        public bool Enabled { get; set; }
-        public int Threshold { get; set; }
-        public string Message { get; set; }
+        public bool enabled { get; set; }
+        public virtual int Threshold { get; set; }
+        public string message { get; set; }
 
         public virtual bool IsActivated(WeatherData weatherData)
         {

@@ -4,16 +4,15 @@ namespace Weather_Monitoring.Bots
 {
     public class RainBot : BaseBot
     {
-        public int humidityThreshold; 
-
+        public int HumidityThreshold { get; set; }
         public override bool IsActivated(WeatherData weatherData)
         {
-            return weatherData.Humidity > humidityThreshold;
+            return weatherData.Humidity > HumidityThreshold;
         }
 
         public override void PerformAction()
         {
-            Console.WriteLine($"RainBot activated");
+            Console.WriteLine($"RainBot activated!");
         }
     }
 }
