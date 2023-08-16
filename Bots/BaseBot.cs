@@ -1,5 +1,4 @@
 ﻿using Weather_Monitoring.DataFormat;
-
 namespace Weather_Monitoring.Bots
 {
     public class BaseBot

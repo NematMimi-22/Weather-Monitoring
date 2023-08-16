@@ -1,5 +1,4 @@
-﻿using System.Text.Json;
-using Weather_Monitoring.Bots;
+﻿using Weather_Monitoring.Bots;
 using Weather_Monitoring.DataFormat;
 namespace Weather_Monitoring
 {
