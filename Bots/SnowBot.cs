@@ -12,6 +12,5 @@ namespace Weather_Monitoring.Bots
         {
             Console.WriteLine($"SnowBot activated!");
         }
-
     }
 }

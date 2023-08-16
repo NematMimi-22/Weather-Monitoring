@@ -19,5 +19,5 @@ namespace Weather_Monitoring.DataFormat
                 throw new ArgumentException("Unsupported input format");
             }
         }
-        }
+    }
 }

@@ -8,7 +8,6 @@ namespace Weather_Monitoring.Bots
         {
             return weatherData.Humidity > HumidityThreshold;
         }
-
         public override void PerformAction()
         {
             Console.WriteLine($"RainBot activated!");
