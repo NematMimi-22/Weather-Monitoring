@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+
 namespace Weather_Monitoring.Bots
 {
     public class ConfigReader

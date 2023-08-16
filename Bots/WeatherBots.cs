@@ -1,6 +1,4 @@
-﻿using Weather_Monitoring.Bots;
-
-namespace Weather_Monitoring
+﻿namespace Weather_Monitoring.Bots
 {
     public class WeatherBots
     {
