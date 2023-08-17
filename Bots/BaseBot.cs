@@ -8,11 +8,6 @@ namespace Weather_Monitoring.Bots
         public virtual int Threshold { get; set; }
         public string message { get; set; }
 
-        public virtual bool IsActivated(WeatherData weatherData)
-        {
-            return false;
-        }
-
         public virtual void PerformAction()
         {
             Console.WriteLine($"{Name} activated.");

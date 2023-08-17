@@ -4,7 +4,7 @@ namespace Weather_Monitoring.Bots
     public class SunBot : BaseBot
     {
         public double TemperatureThreshold { get; set; }
-        public override bool IsActivated(WeatherData weatherData)
+        public bool IsActivated(WeatherData weatherData)
         {
             return weatherData.Temperature > TemperatureThreshold;
         }

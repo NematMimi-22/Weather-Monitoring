@@ -17,19 +17,19 @@ namespace Weather_Monitoring
                 var input = Console.ReadLine();
                 var weatherData = WeatherDataFactory.CreateReader(input);
 
-                if (WeatherBots.RainBot.enabled && WeatherBots.RainBot.IsRainBotActivated(weatherData))
+                if (WeatherBots.RainBot.enabled && WeatherBots.RainBot.IsActivated(weatherData))
                 {
                     WeatherBots.RainBot.PerformAction();
                     Console.WriteLine($"RainBot:{WeatherBots.RainBot.message}");
                 }
 
-                if (WeatherBots.SnowBot.enabled && WeatherBots.SnowBot.IsSnowBotActivated(weatherData))
+                if (WeatherBots.SnowBot.enabled && WeatherBots.SnowBot.IsActivated(weatherData))
                 {
                     WeatherBots.SnowBot.PerformAction();
                     Console.WriteLine($"SnowBot:{WeatherBots.SnowBot.message}");
                 }
 
-                if (WeatherBots.SunBot.enabled && WeatherBots.SunBot.IsSunBotActivated(weatherData))
+                if (WeatherBots.SunBot.enabled && WeatherBots.SunBot.IsActivated(weatherData))
                 {
                     WeatherBots.SunBot.PerformAction();
                     Console.WriteLine($"SunBot:{WeatherBots.SunBot.message}");
