@@ -2,6 +2,7 @@
 using Weather_Monitoring.DataFormat;
 using Weather_Monitoring.Enums;
 using Weather_Monitoring.PrinterService;
+using Weather_Monitoring.Factory;
 namespace Weather_Monitoring
 {
     public class Program
