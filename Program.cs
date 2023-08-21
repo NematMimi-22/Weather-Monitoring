@@ -1,7 +1,6 @@
 ﻿using Weather_Monitoring.Bots;
 using Weather_Monitoring.DataFormat;
-using Weather_Monitoring.ExtensionsMethod;
-
+using Weather_Monitoring.Enums;
 namespace Weather_Monitoring
 {
     public class Program
@@ -10,29 +9,32 @@ namespace Weather_Monitoring
         {
             var jsonFilePath = @"C:\Users\Nemat\source\repos\Weather-Monitoring\config.json";
             var WeatherBots = ConfigReader.ReadConfig(jsonFilePath);
+            var basebotFactory = new BaseBotFactory();
 
             while (true)
             {
                 Console.WriteLine("Enter the weather data:");
                 var input = Console.ReadLine();
                 var weatherData = WeatherDataFactory.CreateReader(input);
-
                 if (WeatherBots.RainBot.enabled && WeatherBots.RainBot.IsActivated(weatherData))
                 {
-                    WeatherBots.RainBot.PerformAction();
-                    Console.WriteLine($"RainBot:{WeatherBots.RainBot.message}");
+                    var Rainbot = basebotFactory.GetBot(BotType.RainBot, WeatherBots);
+                    Rainbot.PerformAction();
+                    Console.WriteLine($"{Rainbot.Name}:{Rainbot.message}");
                 }
 
                 if (WeatherBots.SnowBot.enabled && WeatherBots.SnowBot.IsActivated(weatherData))
                 {
-                    WeatherBots.SnowBot.PerformAction();
-                    Console.WriteLine($"SnowBot:{WeatherBots.SnowBot.message}");
+                    var Snowbot = basebotFactory.GetBot(BotType.SnowBot, WeatherBots);
+                    Snowbot.PerformAction();
+                    Console.WriteLine($"{Snowbot.Name}:{Snowbot.message}");
                 }
 
                 if (WeatherBots.SunBot.enabled && WeatherBots.SunBot.IsActivated(weatherData))
                 {
-                    WeatherBots.SunBot.PerformAction();
-                    Console.WriteLine($"SunBot:{WeatherBots.SunBot.message}");
+                    var Sunbot = basebotFactory.GetBot(BotType.SunBot, WeatherBots);
+                    Sunbot.PerformAction();
+                    Console.WriteLine($"{Sunbot.Name}:{Sunbot.message}");
                 }
             }
         }

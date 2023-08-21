@@ -5,8 +5,8 @@ namespace Weather_Monitoring.Bots
     {
         public static WeatherBots ReadConfig(string configFile)
         {
-            string jsonContent = File.ReadAllText(configFile);
-            WeatherBots WeatherBots = JsonSerializer.Deserialize<WeatherBots>(jsonContent);
+            var jsonContent = File.ReadAllText(configFile);
+            var WeatherBots = JsonSerializer.Deserialize<WeatherBots>(jsonContent);
 
             return JsonSerializer.Deserialize<WeatherBots>(jsonContent);
         }
