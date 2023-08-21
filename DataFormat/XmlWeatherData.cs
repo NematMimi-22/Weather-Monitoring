@@ -8,6 +8,7 @@ namespace Weather_Monitoring.DataFormat
         public static XmlWeatherData FromXml(string xml)
         {
             var serializer = new XmlSerializer(typeof(XmlWeatherData));
+
             using (TextReader reader = new StringReader(xml))
             {
                 return (XmlWeatherData)serializer.Deserialize(reader); 

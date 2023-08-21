@@ -20,6 +20,7 @@ namespace Weather_Monitoring.Bots
         {
             return weatherData.Temperature < TemperatureThreshold;
         }
+
         public void PerformAction()
         {
             Console.WriteLine($"SnowBot activated!");
