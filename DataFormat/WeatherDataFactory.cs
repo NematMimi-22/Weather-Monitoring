@@ -6,11 +6,11 @@ namespace Weather_Monitoring.DataFormat
     {
         public static WeatherData CreateReader(string inputFormat)
         {
-            if (Regex.IsMatch(inputFormat.Trim(), @"^{.*}$"))
+            if (IsJSONFormat(inputFormat))
             {
                 return JSONWeatherData.FromJson(inputFormat);
             }
-            else if (Regex.IsMatch(inputFormat.Trim(), @"^<.*>$"))
+            else if (IsXMLFormat(inputFormat))
             {
                 return XmlWeatherData.FromXml(inputFormat);
             }
@@ -18,6 +18,16 @@ namespace Weather_Monitoring.DataFormat
             {
                 throw new ArgumentException("Unsupported input format");
             }
+        }
+
+        private static bool IsXMLFormat(string inputFormat)
+        {
+            return Regex.IsMatch(inputFormat.Trim(), @"^<.*>$");
+        }
+
+        private static bool IsJSONFormat(string inputFormat)
+        {
+            return Regex.IsMatch(inputFormat.Trim(), @"^{.*}$");
         }
     }
 }

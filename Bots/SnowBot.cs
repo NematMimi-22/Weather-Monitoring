@@ -1,7 +1,7 @@
 ﻿using Weather_Monitoring.DataFormat;
 namespace Weather_Monitoring.Bots
 {
-    public class SnowBot : IBaseBot
+    public class SnowBot : IBot
     {
         public double TemperatureThreshold { get; set; }
         public bool enabled { get; set; }
@@ -16,14 +16,13 @@ namespace Weather_Monitoring.Bots
             this.message = message;
         }
 
-        public bool IsActivated(WeatherData weatherData)
+        public void PerformAction(WeatherData weatherData)
         {
-            return weatherData.Temperature < TemperatureThreshold;
-        }
-
-        public void PerformAction()
-        {
-            Console.WriteLine($"SnowBot activated!");
+            if (weatherData.Temperature < TemperatureThreshold)
+            {
+                Console.WriteLine($"SnowBot activated!");
+                Console.WriteLine($"{Name}: {message}");
+            }
         }
     }
 }
