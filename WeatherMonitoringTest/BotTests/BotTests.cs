@@ -1,7 +1,6 @@
 ﻿using Weather_Monitoring.Bots;
 using Weather_Monitoring.DataFormat;
 using Xunit;
-
 namespace Weather_Monitoring.WeatherMonitoringTest.BotTests
 {
     public class BotTests
@@ -33,5 +32,63 @@ namespace Weather_Monitoring.WeatherMonitoringTest.BotTests
             //Assert
             Assert.False(result);
         }
+
+        [Fact]
+        public void SunBot_WhenTemperatureThresholdAboveTemperature_ShouldReturnTrue()
+        {
+            // Arrange
+            var weatherData = new WeatherData { Temperature = 80 };
+            var sunBot = new SunBot(70, true, "Sun is expected");
+
+            // Act
+            var result = sunBot.PerformAction(weatherData);
+
+            //Assert
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void SunBot_WhenTemperatureThresholdLessThanTemperature_ShouldReturnTrue()
+        {
+            // Arrange
+            var weatherData = new WeatherData { Temperature = 80 };
+            var sunBot = new SunBot(90, true, "Sun is expected");
+
+            // Act
+            var result = sunBot.PerformAction(weatherData);
+
+            //Assert
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void SnowBot_WhenTemperatureThresholdAboveTemperature_ShouldReturnTrue()
+        {
+            // Arrange
+            var weatherData = new WeatherData { Temperature = 80 };
+            var SnowBot = new SnowBot(70, true, "Snow is expected");
+
+            // Act
+            var result = SnowBot.PerformAction(weatherData);
+
+            //Assert
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void SnowBot_WhenTemperatureThresholdLessThanTemperature_ShouldReturnTrue()
+        {
+            // Arrange
+            var weatherData = new WeatherData { Temperature = 80 };
+            var SnowBot = new SnowBot(90, true, "Snow is expected");
+
+            // Act
+            var result = SnowBot.PerformAction(weatherData);
+
+            //Assert
+            Assert.True(result);
+        }
+
+
     }
 }
