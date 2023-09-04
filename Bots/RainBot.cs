@@ -1,7 +1,7 @@
 ﻿using Weather_Monitoring.DataFormat;
 namespace Weather_Monitoring.Bots
 {
-    public class RainBot : IBaseBot
+    public class RainBot : IBot
     {
         public int HumidityThreshold { get; set; }
         public bool enabled { get; set; }
@@ -16,14 +16,13 @@ namespace Weather_Monitoring.Bots
             this.message = message;
         }
 
-        public bool IsActivated(WeatherData weatherData)
+        public void PerformAction(WeatherData weatherData)
         {
-            return weatherData.Humidity > HumidityThreshold;
-        }
-
-        public void PerformAction()
-        {
-            Console.WriteLine($"RainBot activated!");
+            if (weatherData.Humidity > HumidityThreshold)
+            {
+                Console.WriteLine($"RainBot activated!");
+                Console.WriteLine($"{Name}: {message}");
+            }
         }
     }
 }

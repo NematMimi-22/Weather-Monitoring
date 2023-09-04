@@ -1,17 +1,15 @@
 ﻿using System.Xml.Serialization;
 namespace Weather_Monitoring.DataFormat
 {
-    [XmlRoot("WeatherData", Namespace = "")]
-
-    public class XmlWeatherData : WeatherData
+    public class XmlWeatherData 
     {
-        public static XmlWeatherData FromXml(string xml)
+        public static WeatherData FromXml(string xml)
         {
-            var serializer = new XmlSerializer(typeof(XmlWeatherData));
+            var serializer = new XmlSerializer(typeof(WeatherData));
 
             using (TextReader reader = new StringReader(xml))
             {
-                return (XmlWeatherData)serializer.Deserialize(reader); 
+                return (WeatherData)serializer.Deserialize(reader);
             }
         }
     }

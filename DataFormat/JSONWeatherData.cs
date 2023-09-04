@@ -1,11 +1,11 @@
 ﻿using Newtonsoft.Json;
 namespace Weather_Monitoring.DataFormat
 {
-    public class JSONWeatherData : WeatherData
+    public class JSONWeatherData 
     {
-        public static JSONWeatherData FromJson(string json)
+        public static WeatherData FromJson(string json)
         {
-            return JsonConvert.DeserializeObject<JSONWeatherData>(json);
+            return JsonConvert.DeserializeObject<WeatherData>(json);
         }
     }
 }
