@@ -48,7 +48,7 @@ namespace Weather_Monitoring.WeatherMonitoringTest.BotTests
         }
 
         [Fact]
-        public void SunBot_WhenTemperatureThresholdLessThanTemperature_ShouldReturnTrue()
+        public void SunBot_WhenTemperatureThresholdLessThanTemperature_ShouldReturnFalse()
         {
             // Arrange
             var weatherData = new WeatherData { Temperature = 80 };
@@ -62,7 +62,7 @@ namespace Weather_Monitoring.WeatherMonitoringTest.BotTests
         }
 
         [Fact]
-        public void SnowBot_WhenTemperatureThresholdAboveTemperature_ShouldReturnTrue()
+        public void SnowBot_WhenTemperatureThresholdAboveTemperature_ShouldReturnFalse()
         {
             // Arrange
             var weatherData = new WeatherData { Temperature = 80 };
