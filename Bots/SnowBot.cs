@@ -18,7 +18,7 @@ namespace Weather_Monitoring.Bots
 
         public bool PerformAction(WeatherData weatherData)
         {
-            if (weatherData.Temperature < TemperatureThreshold)
+            if (weatherData.Temperature < TemperatureThreshold && enabled)
             {
                 Console.WriteLine($"SnowBot activated!");
                 Console.WriteLine($"{Name}: {message}");
