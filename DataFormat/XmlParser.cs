@@ -1,7 +1,7 @@
 ﻿using System.Xml.Serialization;
 namespace Weather_Monitoring.DataFormat
 {
-    public class XmlWeatherData 
+    public class XmlParser 
     {
         public static WeatherData FromXml(string xml)
         {

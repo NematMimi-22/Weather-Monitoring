@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 namespace Weather_Monitoring.DataFormat
 {
-    public class JSONWeatherData 
+    public class JSONParser 
     {
         public static WeatherData FromJson(string json)
         {
