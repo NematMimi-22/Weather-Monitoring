@@ -16,13 +16,14 @@ namespace Weather_Monitoring.Bots
             this.message = message;
         }
 
-        public void PerformAction(WeatherData weatherData)
+        public bool IsActivated(WeatherData weatherData)
         {
-            if (weatherData.Temperature < TemperatureThreshold)
-            {
-                Console.WriteLine($"SnowBot activated!");
-                Console.WriteLine($"{Name}: {message}");
-            }
+            return weatherData.Temperature < TemperatureThreshold;
+        }
+
+        public void PerformAction()
+        {
+            Console.WriteLine($"SnowBot activated!");
         }
     }
 }
