@@ -6,11 +6,11 @@ namespace Weather_Monitoring.ReadConfig
         public static BotConfig ReadConfig(string botName)
         {
             IConfiguration configuration = new ConfigurationBuilder()
-           .SetBasePath(Directory.GetCurrentDirectory())
-           .AddJsonFile("C:\\Users\\Nemat\\source\\repos\\Weather-Monitoring\\ReadConfig\\config.json")
-           .Build();
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("config.json", optional: false, reloadOnChange: true)
+                .Build();
             var Threshold = GetThreshold(botName, configuration);
-            var Message= configuration[$"{botName}:Message"];
+            var Message = configuration[$"{botName}:Message"];
             var Enabled = bool.Parse(configuration[$"{botName}:Enabled"]);
 
             return new BotConfig(Enabled, Threshold, Message); 
@@ -21,6 +21,10 @@ namespace Weather_Monitoring.ReadConfig
             if (botName == "RainBot")
             {
                 return int.Parse(configuration["RainBot:HumidityThreshold"]);
+            }
+            else if (botName == "SnowBot")
+            {
+                return int.Parse(configuration["SnowBot:TemperatureThreshold"]);
             }
             else
             {

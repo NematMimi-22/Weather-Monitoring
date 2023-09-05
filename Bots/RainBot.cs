@@ -16,15 +16,13 @@ namespace Weather_Monitoring.Bots
             this.message = message;
         }
 
-        public bool PerformAction(WeatherData weatherData)
+        public void PerformAction(WeatherData weatherData)
         {
             if (weatherData.Humidity > HumidityThreshold)
             {
                 Console.WriteLine($"RainBot activated!");
                 Console.WriteLine($"{Name}: {message}");
-                return true;
             }
-            return false;
         }
     }
 }

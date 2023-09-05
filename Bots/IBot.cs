@@ -8,6 +8,6 @@ namespace Weather_Monitoring.Bots
         string Name { get; }
         int Threshold { get; set; }
 
-        bool PerformAction(WeatherData weatherData);
+        void PerformAction(WeatherData weatherData);
     }
 }

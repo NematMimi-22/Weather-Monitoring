@@ -9,7 +9,6 @@ namespace Weather_Monitoring.PublishSubscribeDP
         {
             if (!subscribers.ContainsKey(eventName))
             {
-
                 subscribers[eventName] = new List<IBot>();
             }
             subscribers[eventName].Add(bot);
