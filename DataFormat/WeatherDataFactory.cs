@@ -8,11 +8,11 @@ namespace Weather_Monitoring.DataFormat
         {
             if (IsJSONFormat(inputFormat))
             {
-                return JSONWeatherData.FromJson(inputFormat);
+                return JSONParser.FromJson(inputFormat);
             }
             else if (IsXMLFormat(inputFormat))
             {
-                return XmlWeatherData.FromXml(inputFormat);
+                return XmlParser.FromXml(inputFormat);
             }
             else
             {
