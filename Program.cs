@@ -35,8 +35,6 @@ namespace Weather_Monitoring
                 eventSubscriber.Unsubscribe("HumidityExceeded", rainBot);
                 eventSubscriber.Unsubscribe("TemperatureExceeded", sunBot);
                 eventSubscriber.Unsubscribe("TemperatureExceeded", snowBot);
-
-
             }
         }
     }
