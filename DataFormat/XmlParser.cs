@@ -6,10 +6,16 @@ namespace Weather_Monitoring.DataFormat
         public static WeatherData FromXml(string xml)
         {
             var serializer = new XmlSerializer(typeof(WeatherData));
-
-            using (TextReader reader = new StringReader(xml))
+            try
             {
-                return (WeatherData)serializer.Deserialize(reader);
+                using (TextReader reader = new StringReader(xml))
+                {
+                    return (WeatherData)serializer.Deserialize(reader);
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
             }
         }
     }
