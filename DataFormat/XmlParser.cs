@@ -1,9 +1,7 @@
-﻿using Newtonsoft.Json;
-using System.Reflection.PortableExecutable;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 namespace Weather_Monitoring.DataFormat
 {
-    public class XmlParser 
+    public class XmlParser
     {
         public static WeatherData FromXml(string xml)
         {
