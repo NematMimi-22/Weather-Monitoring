@@ -9,10 +9,7 @@ namespace Weather_Monitoring.PublishSubscribeDP
             {
                 foreach (var bot in subscribers)
                 {
-                    var t = new WeatherEventSubscriber();
                     bot.PerformAction(weatherData);
-                    t.Unsubscribe(eventName, (WeatherEventSubscriber)bot);
-
                 }
             }
         }

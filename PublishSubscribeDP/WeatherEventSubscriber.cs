@@ -15,11 +15,11 @@ namespace Weather_Monitoring.PublishSubscribeDP
             subscribers[eventName].Add(bot);
         }
 
-        public void Unsubscribe(string eventName, WeatherEventSubscriber subscriber)
+        public void Unsubscribe(string eventName, IBot bot)
         {
             if (subscribers.ContainsKey(eventName))
             {
-                subscribers[eventName].Remove((IBot)subscriber);
+                subscribers[eventName].Remove(bot);
             }
         }
     }
