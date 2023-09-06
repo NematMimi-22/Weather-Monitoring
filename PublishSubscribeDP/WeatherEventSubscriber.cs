@@ -5,6 +5,7 @@ namespace Weather_Monitoring.PublishSubscribeDP
     {
         public static Dictionary<string, List<IBot>> subscribers = new Dictionary<string, List<IBot>>();
 
+
         public void Subscribe(string eventName, IBot bot)
         {
             if (!subscribers.ContainsKey(eventName))
@@ -12,6 +13,14 @@ namespace Weather_Monitoring.PublishSubscribeDP
                 subscribers[eventName] = new List<IBot>();
             }
             subscribers[eventName].Add(bot);
+        }
+
+        public void Unsubscribe(string eventName, IBot bot)
+        {
+            if (subscribers.ContainsKey(eventName))
+            {
+                subscribers[eventName].Remove(bot);
+            }
         }
     }
 }

@@ -26,10 +26,11 @@ namespace Weather_Monitoring.ReadConfig
             {
                 return int.Parse(configuration["SnowBot:TemperatureThreshold"]);
             }
-            else
+            else if (botName == "SunBot")
             {
                 return int.Parse(configuration["SunBot:TemperatureThreshold"]);
             }
+            return 0;
         }
     }
 }

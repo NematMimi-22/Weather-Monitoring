@@ -7,7 +7,7 @@ namespace Weather_Monitoring.PublishSubscribeDP
         {
             if (WeatherEventSubscriber.subscribers.TryGetValue(eventName, out var subscribers))
             {
-                foreach (var bot in WeatherEventSubscriber.subscribers[eventName])
+                foreach (var bot in subscribers)
                 {
                     bot.PerformAction(weatherData);
                 }

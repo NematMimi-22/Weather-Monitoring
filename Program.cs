@@ -14,9 +14,13 @@ namespace Weather_Monitoring
             var snowBotConfig = ConfigReader.ReadConfig("SnowBot");
             var eventSubscriber = new WeatherEventSubscriber();
             var botCreater = new BotFactory();
-            eventSubscriber.Subscribe("HumidityExceeded", botCreater.CreateBot(BotType.RainBot, rainBotConfig));
-            eventSubscriber.Subscribe("TemperatureExceeded", botCreater.CreateBot(BotType.SunBot, sunBotConfig));
-            eventSubscriber.Subscribe("TemperatureExceeded", botCreater.CreateBot(BotType.SnowBot, snowBotConfig));
+
+            var rainBot = botCreater.CreateBot(BotType.RainBot, rainBotConfig);
+            var sunBot = botCreater.CreateBot(BotType.SunBot, sunBotConfig);
+            var snowBot = botCreater.CreateBot(BotType.SnowBot, snowBotConfig);
+            eventSubscriber.Subscribe("HumidityExceeded", rainBot);
+            eventSubscriber.Subscribe("TemperatureExceeded", sunBot);
+            eventSubscriber.Subscribe("TemperatureExceeded", snowBot);
 
             while (true)
             {
@@ -27,6 +31,12 @@ namespace Weather_Monitoring
                 eventPublisher.PublishEvent("HumidityExceeded", weatherData);
                 eventPublisher.PublishEvent("TemperatureExceeded", weatherData);
                 eventPublisher.PublishEvent("TemperatureDropped", weatherData);
+
+                eventSubscriber.Unsubscribe("HumidityExceeded", rainBot);
+                eventSubscriber.Unsubscribe("TemperatureExceeded", sunBot);
+                eventSubscriber.Unsubscribe("TemperatureExceeded", snowBot);
+
+
             }
         }
     }
