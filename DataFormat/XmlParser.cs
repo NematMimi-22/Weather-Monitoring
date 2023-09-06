@@ -1,4 +1,6 @@
-﻿using System.Xml.Serialization;
+﻿using Newtonsoft.Json;
+using System.Reflection.PortableExecutable;
+using System.Xml.Serialization;
 namespace Weather_Monitoring.DataFormat
 {
     public class XmlParser 
@@ -6,10 +8,16 @@ namespace Weather_Monitoring.DataFormat
         public static WeatherData FromXml(string xml)
         {
             var serializer = new XmlSerializer(typeof(WeatherData));
-
-            using (TextReader reader = new StringReader(xml))
+            try
             {
-                return (WeatherData)serializer.Deserialize(reader);
+                using (TextReader reader = new StringReader(xml))
+                {
+                    return (WeatherData)serializer.Deserialize(reader);
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
             }
         }
     }
