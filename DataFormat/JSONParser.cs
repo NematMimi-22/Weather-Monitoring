@@ -5,7 +5,14 @@ namespace Weather_Monitoring.DataFormat
     {
         public static WeatherData FromJson(string json)
         {
-            return JsonConvert.DeserializeObject<WeatherData>(json);
+            try
+            {
+                return JsonConvert.DeserializeObject<WeatherData>(json);
+            }
+            catch (JsonReaderException)
+            {
+                return null;
+            }
         }
     }
 }
