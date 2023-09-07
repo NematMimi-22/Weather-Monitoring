@@ -5,7 +5,6 @@ namespace Weather_Monitoring.PublishSubscribeDP
     {
         public static Dictionary<string, List<IBot>> subscribers = new Dictionary<string, List<IBot>>();
 
-
         public void Subscribe(string eventName, IBot bot)
         {
             if (!subscribers.ContainsKey(eventName))
