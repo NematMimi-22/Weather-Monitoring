@@ -1,15 +1,14 @@
 ﻿using Weather_Monitoring.Bots;
 using Weather_Monitoring.PublishSubscribeDP;
 using Xunit;
-
 namespace Weather_Monitoring.WeatherMonitoringTest.PublishSubscribeDPTest
 {
     public class WeatherEventSubscriberTests
     {
         [Theory]
         [InlineData(typeof(RainBot), 70, true, "Rain is expected")]
-        [InlineData(typeof(SunBot), 80, true, "Sunny weather")]
-        [InlineData(typeof(SnowBot), 32, true, "Snowy day")]
+        [InlineData(typeof(SunBot), 80, true, "Sun is expected")]
+        [InlineData(typeof(SnowBot), 32, true, "Snow is expected")]
         public void Subscribe_AddsBotToEvent(Type botType, int threshold, bool isActive, string message)
         {
             // Arrange
@@ -26,8 +25,8 @@ namespace Weather_Monitoring.WeatherMonitoringTest.PublishSubscribeDPTest
 
         [Theory]
         [InlineData(typeof(RainBot), 70, true, "Rain is expected")]
-        [InlineData(typeof(SunBot), 80, true, "Sunny weather")]
-        [InlineData(typeof(SnowBot), 32, true, "Snowy day")]
+        [InlineData(typeof(SunBot), 80, true, "Sun is expected")]
+        [InlineData(typeof(SnowBot), 32, true, "Snow is expected")]
         public void Unsubscribe_RemovesBotFromEvent(Type botType, int threshold, bool isActive, string message)
         {
             // Arrange
@@ -42,7 +41,5 @@ namespace Weather_Monitoring.WeatherMonitoringTest.PublishSubscribeDPTest
             // Assert
             Assert.DoesNotContain(bot, WeatherEventSubscriber.subscribers[eventName]);
         }
-
- 
     }
 }
