@@ -22,11 +22,11 @@ namespace Weather_Monitoring.ReadConfig
             {
                 return int.Parse(configuration["RainBot:HumidityThreshold"]);
             }
-            else if (botName == "SnowBot")
+            if (botName == "SnowBot")
             {
                 return int.Parse(configuration["SnowBot:TemperatureThreshold"]);
             }
-            else if (botName == "SunBot")
+            if (botName == "SunBot")
             {
                 return int.Parse(configuration["SunBot:TemperatureThreshold"]);
             }
