@@ -1,6 +1,5 @@
 ﻿using Weather_Monitoring.ReadConfig;
 using Xunit;
-using Microsoft.Extensions.Configuration;
 namespace Weather_Monitoring.WeatherMonitoringTest.ConfigFileTest
 {
     public class ConfigReaderTests
@@ -31,12 +30,11 @@ namespace Weather_Monitoring.WeatherMonitoringTest.ConfigFileTest
             Assert.False(botConfig.Enabled);
         }
 
-        [Fact]
-        public void ReadConfig_ReturnsValidBotConfig_WhenBotNameIsSunBot()
+        [Theory]
+        [InlineData("RainBot")]
+        [InlineData("SunBot")]
+        public void ReadConfig_ReturnsValidBotConfig_WhenBotNameIsSunBot(string botName)
         {
-            // Arrange
-            var botName = "SunBot";
-
             // Act
             var botConfig = ConfigReader.ReadConfig(botName);
 
