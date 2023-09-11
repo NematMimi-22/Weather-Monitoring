@@ -24,15 +24,16 @@ namespace Weather_Monitoring.WeatherMonitoringTest.BotTests
             Assert.IsType(expectedType, bot);
         }
 
-        [Fact]
-        public void CreateBot_ReturnsNull_WhenBotTypeIsInvalid()
+        [Theory]
+        [InlineData((BotType)3, true, 10, "Invalid")]
+        public void CreateBot_ReturnsNull_WhenBotTypeIsInvalid(BotType bottype, bool enabled, int Threshold, string message)
         {
             // Arrange
             var factory = new BotFactory();
-            var botConfig = new BotConfig(true, 30, "Invalid");
+            var botConfig = new BotConfig(enabled, Threshold, message);
 
             // Act
-            var bot = factory.CreateBot((BotType)3, botConfig);
+            var bot = factory.CreateBot(bottype, botConfig);
 
             // Assert
             Assert.Null(bot);

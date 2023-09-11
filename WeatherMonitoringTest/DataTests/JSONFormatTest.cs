@@ -1,16 +1,14 @@
 ﻿using Weather_Monitoring.DataFormat;
 using Xunit;
-
 namespace Weather_Monitoring.WeatherMonitoringTest.DataTests
 {
     public class JSONFormatTest
     {
-        [Fact]
-        public void FromJson_ValidJson_ReturnsWeatherData()
+        [Theory]
+        [InlineData("{\"temperature\": 25.5, \"humidity\": 50.0}")]
+        [InlineData(" {\"Location\": \"City Name\", \"Temperature\": 23.0, \"Humidity\": 85.0}")]
+        public void FromJson_ValidJson_ReturnsWeatherData(string jsonInput)
         {
-            // Arrange
-            var jsonInput = "{\"temperature\": 25.5, \"humidity\": 50.0}";
-
             // Act
             var weatherData = JSONParser.FromJson(jsonInput);
 
@@ -18,25 +16,22 @@ namespace Weather_Monitoring.WeatherMonitoringTest.DataTests
             Assert.NotNull(weatherData);
         }
 
-        [Fact]
-        public void FromJson_InvalidJson_ReturnsNull()
+        [Theory]
+        [InlineData("Invalid")]
+        public void FromJson_InvalidJson_ReturnsNull(string jsonInput)
         {
-            // Arrange
-            var jsonInput = "{InvalidInput}";
-
-                // Act
-                var weatherData = JSONParser.FromJson(jsonInput);
+            // Act
+            var weatherData = JSONParser.FromJson(jsonInput);
 
             // Assert
             Assert.Null(weatherData);
         }
 
-        [Fact]
-        public void CreateReader_WithValidJSON_ReturnsWeatherData()
+        [Theory]
+        [InlineData("{\"temperature\": 25.5, \"humidity\": 50.0}")]
+        [InlineData(" {\"Location\": \"City Name\", \"Temperature\": 23.0, \"Humidity\": 85.0}")]
+        public void CreateReader_WithValidJSON_ReturnsWeatherData(string json)
         {
-            // Arrange
-            string json = "{\"temperature\": 25, \"humidity\": 50}";
-
             // Act
             WeatherData weatherData = WeatherDataFactory.CreateReader(json);
 

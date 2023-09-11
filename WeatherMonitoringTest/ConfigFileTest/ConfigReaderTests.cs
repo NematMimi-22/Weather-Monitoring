@@ -4,12 +4,10 @@ namespace Weather_Monitoring.WeatherMonitoringTest.ConfigFileTest
 {
     public class ConfigReaderTests
     {
-        [Fact]
-        public void ReadConfig_ReturnsValidBotConfig_WhenBotNameIsRainBot()
+        [Theory]
+        [InlineData("RainBot")]
+        public void ReadConfig_ReturnsValidBotConfig_WhenBotNameIsRainBot(string botName)
         {
-            // Arrange
-            var botName = "RainBot";
-
             // Act
             var botConfig = ConfigReader.ReadConfig(botName);
 
@@ -17,12 +15,10 @@ namespace Weather_Monitoring.WeatherMonitoringTest.ConfigFileTest
             Assert.Equal(70, botConfig.Threshold);
         }
 
-        [Fact]
-        public void ReadConfig_ReturnsValidBotConfig_WhenBotNameIsSnowBot()
+        [Theory]
+        [InlineData("SnowBot")]
+        public void ReadConfig_ReturnsValidBotConfig_WhenBotNameIsSnowBot(string botName)
         {
-            // Arrange
-            var botName = "SnowBot";
-
             // Act
             var botConfig = ConfigReader.ReadConfig(botName);
 

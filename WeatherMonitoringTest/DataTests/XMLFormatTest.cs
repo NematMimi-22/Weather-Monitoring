@@ -4,12 +4,10 @@ namespace Weather_Monitoring.WeatherMonitoringTest.DataTests
 {
     public class XMLFormatTest
     {
-        [Fact]
-        public void FromXML_ValidXML_ReturnsWeatherData()
+        [Theory]
+        [InlineData("<WeatherData><Location>City Name</Location><Temperature>23.0</Temperature><Humidity>85.0</Humidity></WeatherData>\r\n")]
+        public void FromXML_ValidXML_ReturnsWeatherData(string xmlInput)
         {
-            // Arrange
-            var xmlInput = "<WeatherData><Location>City Name</Location><Temperature>23.0</Temperature><Humidity>85.0</Humidity></WeatherData>\r\n";
-
             // Act
             var weatherData = XmlParser.FromXml(xmlInput);
 
@@ -17,12 +15,10 @@ namespace Weather_Monitoring.WeatherMonitoringTest.DataTests
             Assert.NotNull(weatherData);
         }
 
-        [Fact]
-        public void FromXML_InvalidXML_ReturnsNull()
+        [Theory]
+        [InlineData("test")]
+        public void FromXML_InvalidXML_ReturnsNull(string xmlInput)
         {
-            // Arrange
-            var xmlInput = "test";
-
             // Act
             var weatherData = XmlParser.FromXml(xmlInput);
 
@@ -30,12 +26,10 @@ namespace Weather_Monitoring.WeatherMonitoringTest.DataTests
             Assert.Null(weatherData);
         }
 
-        [Fact]
-        public void CreateReader_WithValidXML_ReturnsWeatherData()
+        [Theory]
+        [InlineData("<WeatherData><Location>City Name</Location><Temperature>23.0</Temperature><Humidity>85.0</Humidity></WeatherData>\r\n")]
+        public void CreateReader_WithValidXML_ReturnsWeatherData(string xmlInput)
         {
-            // Arrange
-            var xmlInput = "<WeatherData><Location>City Name</Location><Temperature>23.0</Temperature><Humidity>85.0</Humidity></WeatherData>\r\n";
-
             // Act
             WeatherData weatherData = WeatherDataFactory.CreateReader(xmlInput);
 

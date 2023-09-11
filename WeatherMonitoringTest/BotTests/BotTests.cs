@@ -5,12 +5,14 @@ namespace Weather_Monitoring.WeatherMonitoringTest.BotTests
 {
     public class BotTests
     {
-        [Fact]
-        public void RainBot_WhenHumidityAboveThreshold_ShouldReturnTrue()
+        [Theory]
+        [InlineData(80, 70, true, "Rain is expected")]
+        [InlineData(100, 70, true, "Rain is expected")]
+        public void RainBot_WhenHumidityAboveThreshold_ShouldReturnTrue(int humidity,int Threshold, bool enabled,string message)
         {
             // Arrange
-            var weatherData = new WeatherData { Humidity = 80 };
-            var rainBot = new RainBot(70, true, "Rain is expected");
+            var weatherData = new WeatherData { Humidity = humidity };
+            var rainBot = new RainBot(Threshold, enabled, message);
 
             // Act
             var result= rainBot.PerformAction(weatherData);
@@ -19,12 +21,14 @@ namespace Weather_Monitoring.WeatherMonitoringTest.BotTests
             Assert.True(result);
         }
 
-        [Fact]
-        public void RainBot_WhenHumidityLessThanThreshold_ShouldReturnFalse()
+        [Theory]
+        [InlineData(50, 70, false, "Rain is expected")]
+        [InlineData(40, 70, true, "Rain is expected")]
+        public void RainBot_WhenHumidityLessThanThreshold_ShouldReturnFalse(int humidity, int Threshold, bool enabled, string message)
         {
             // Arrange
-            var weatherData = new WeatherData { Humidity = 50 };
-            var rainBot = new RainBot(70, true, "Rain is expected");
+            var weatherData = new WeatherData { Humidity = humidity };
+            var rainBot = new RainBot(Threshold, enabled, message);
 
             // Act
             var result = rainBot.PerformAction(weatherData);
@@ -33,12 +37,13 @@ namespace Weather_Monitoring.WeatherMonitoringTest.BotTests
             Assert.False(result);
         }
 
-        [Fact]
-        public void SunBot_WhenTemperatureThresholdAboveTemperature_ShouldReturnTrue()
+        [Theory]
+        [InlineData(80, 70, true, "sun is expected")]
+        public void SunBot_WhenTemperatureThresholdAboveTemperature_ShouldReturnTrue(int temperature, int Threshold, bool enabled, string message)
         {
             // Arrange
-            var weatherData = new WeatherData { Temperature = 80 };
-            var sunBot = new SunBot(70, true, "Sun is expected");
+            var weatherData = new WeatherData { Temperature = temperature };
+            var sunBot = new SunBot(Threshold, enabled, message);
 
             // Act
             var result = sunBot.PerformAction(weatherData);
@@ -47,12 +52,14 @@ namespace Weather_Monitoring.WeatherMonitoringTest.BotTests
             Assert.True(result);
         }
 
-        [Fact]
-        public void SunBot_WhenTemperatureThresholdLessThanTemperature_ShouldReturnFalse()
+        [Theory]
+        [InlineData(100, 90, false, "sun is expected")]
+        [InlineData(80, 90, true, "sun is expected")]
+        public void SunBot_WhenTemperatureThresholdLessThanTemperature_ShouldReturnFalse(int temperature, int Threshold, bool enabled, string message)
         {
             // Arrange
-            var weatherData = new WeatherData { Temperature = 80 };
-            var sunBot = new SunBot(90, true, "Sun is expected");
+            var weatherData = new WeatherData { Temperature = temperature };
+            var sunBot = new SunBot(Threshold, enabled, message);
 
             // Act
             var result = sunBot.PerformAction(weatherData);
@@ -61,12 +68,14 @@ namespace Weather_Monitoring.WeatherMonitoringTest.BotTests
             Assert.False(result);
         }
 
-        [Fact]
-        public void SnowBot_WhenTemperatureThresholdAboveTemperature_ShouldReturnFalse()
+        [Theory]
+        [InlineData(80, 20, true, "Snow is expected")]
+        [InlineData(80, 20, false, "Snow is expected")]
+        public void SnowBot_WhenTemperatureThresholdAboveTemperature_ShouldReturnFalse(int temperature, int Threshold, bool enabled, string message)
         {
             // Arrange
-            var weatherData = new WeatherData { Temperature = 80 };
-            var SnowBot = new SnowBot(70, true, "Snow is expected");
+            var weatherData = new WeatherData { Temperature = temperature };
+            var SnowBot = new SnowBot(Threshold, enabled, message);
 
             // Act
             var result = SnowBot.PerformAction(weatherData);
@@ -75,12 +84,13 @@ namespace Weather_Monitoring.WeatherMonitoringTest.BotTests
             Assert.False(result);
         }
 
-        [Fact]
-        public void SnowBot_WhenTemperatureThresholdLessThanTemperature_ShouldReturnTrue()
+        [Theory]
+        [InlineData(80, 100, true, "Snow is expected")]
+        public void SnowBot_WhenTemperatureThresholdLessThanTemperature_ShouldReturnTrue(int temperature, int Threshold, bool enabled, string message)
         {
             // Arrange
-            var weatherData = new WeatherData { Temperature = 80 };
-            var SnowBot = new SnowBot(90, true, "Snow is expected");
+            var weatherData = new WeatherData { Temperature = temperature };
+            var SnowBot = new SnowBot(Threshold, enabled, message);
 
             // Act
             var result = SnowBot.PerformAction(weatherData);
@@ -88,7 +98,5 @@ namespace Weather_Monitoring.WeatherMonitoringTest.BotTests
             //Assert
             Assert.True(result);
         }
-
-
     }
 }
