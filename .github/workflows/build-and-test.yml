@@ -35,7 +35,3 @@ jobs:
     
     - name: Test
       run: dotnet test --no-restore --verbosity normal
-      working-directory:./
-
-    - name: Run tests with specific config file
-      run: dotnet test --no-restore --verbosity normal C:\Users\Nemat\source\repos\Weather-Monitoring\bin\Debug\net6.0\config.json
