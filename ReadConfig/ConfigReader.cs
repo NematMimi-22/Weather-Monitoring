@@ -5,7 +5,7 @@ namespace Weather_Monitoring.ReadConfig
     {
         public static BotConfig ReadConfig(string botName)
         {
-            var configFilePath = @"C:\Users\Nemat\source\repos\Weather-Monitoring\bin\Debug\net6.0\config.json"; 
+            var configFilePath = @"config.json"; 
             IConfiguration configuration = new ConfigurationBuilder()
                 .AddJsonFile(configFilePath, optional: false, reloadOnChange: true)
                 .Build();
