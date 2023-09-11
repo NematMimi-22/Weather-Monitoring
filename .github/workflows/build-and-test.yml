@@ -32,6 +32,9 @@ jobs:
       
     - name: Build
       run: dotnet build --configuration Release --no-restore
-    
+
+    - name: Set working directory
+      run: cd C:\Users\Nemat\source\repos\Weather-Monitoring\bin\Debug\net6.0
+
     - name: Test
       run: dotnet test --no-restore --verbosity normal
