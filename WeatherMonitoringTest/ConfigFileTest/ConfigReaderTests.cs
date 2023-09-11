@@ -5,7 +5,7 @@ namespace Weather_Monitoring.WeatherMonitoringTest.ConfigFileTest
 {
     public class ConfigReaderTests
     {
-     /*   [Fact]
+        [Fact]
         public void ReadConfig_ReturnsValidBotConfig_WhenBotNameIsRainBot()
         {
             // Arrange
@@ -42,6 +42,6 @@ namespace Weather_Monitoring.WeatherMonitoringTest.ConfigFileTest
 
             // Assert
             Assert.True(botConfig.Enabled);
-        }*/
+        }
     }
 }
