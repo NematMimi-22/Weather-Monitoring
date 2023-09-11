@@ -5,14 +5,14 @@ namespace Weather_Monitoring.WeatherMonitoringTest.ConfigFileTest
     public class ConfigReaderTests
     {
         [Theory]
-        [InlineData("RainBot")]
-        public void ReadConfig_ReturnsValidBotConfig_WhenBotNameIsRainBot(string botName)
+        [InlineData("RainBot", 70)]
+        public void ReadConfig_ReturnsValidBotConfig_WhenBotNameIsRainBot(string botName, int expectedThreshold)
         {
             // Act
             var botConfig = ConfigReader.ReadConfig(botName);
 
             // Assert
-            Assert.Equal(70, botConfig.Threshold);
+            Assert.Equal(expectedThreshold, botConfig.Threshold);
         }
 
         [Theory]
