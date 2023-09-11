@@ -5,12 +5,13 @@ namespace Weather_Monitoring.ReadConfig
     {
         public static BotConfig ReadConfig(string botName)
         {
-            var configFilePath = @"C:\Users\Nemat\source\repos\Weather-Monitoring\config.json";
+            var configFilePath = @"C:\Users\Nemat\source\repos\Weather-Monitoring"; 
 
             IConfiguration configuration = new ConfigurationBuilder()
-                .SetBasePath(Path.GetDirectoryName(configFilePath))
-                .AddJsonFile(Path.GetFileName(configFilePath), optional: false, reloadOnChange: true)
+                .SetBasePath(configFilePath) 
+                .AddJsonFile("config.json", optional: false, reloadOnChange: true)
                 .Build();
+
             var Threshold = GetThreshold(botName, configuration);
             var Message = configuration[$"{botName}:Message"];
             var Enabled = bool.Parse(configuration[$"{botName}:Enabled"]);
