@@ -1,9 +1,15 @@
 ﻿using Newtonsoft.Json;
 namespace Weather_Monitoring.DataFormat
 {
-    public class JSONParser 
+    public interface IWetherDataParser
     {
-        public static WeatherData FromJson(string json)
+        WeatherData Parse(string input);
+        bool IsSupportedFormat(input)
+    }
+
+    public class JSONParser : IWetherDataParser
+    {
+        public  WeatherData Parse(string input)
         {
             try
             {
@@ -13,6 +19,10 @@ namespace Weather_Monitoring.DataFormat
             {
                 return null;
             }
+        }
+        public  bool IsSupportedFormat(string inputFormat)
+        {
+            return Regex.IsMatch(inputFormat.Trim(), @"^<.*>$");
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using System.Xml.Serialization;
 namespace Weather_Monitoring.DataFormat
 {
-    public class XmlParser
+    public class XmlParser: IWetherDataParser
     {
-        public static WeatherData FromXml(string xml)
+        public static WeatherData Parse(string xml)
         {
             var serializer = new XmlSerializer(typeof(WeatherData));
             try
@@ -18,5 +18,7 @@ namespace Weather_Monitoring.DataFormat
                 return null;
             }
         }
+        
+        
     }
 }

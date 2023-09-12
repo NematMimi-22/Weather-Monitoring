@@ -7,32 +7,36 @@ namespace Weather_Monitoring
 {
     public class Program
     {
+        // APPConfig
+            // RainBotConfig
+            // SunBotConfig
         public static void Main()
         {
-            var rainBotConfig = ConfigReader.ReadConfig("RainBot");
+            // TODO: didn't like reading config this way
+            var rainBotConfig = ConfigReader.ReadAppConfig("RainBot");
             var sunBotConfig = ConfigReader.ReadConfig("SunBot");
             var snowBotConfig = ConfigReader.ReadConfig("SnowBot");
-            var eventSubscriber = new WeatherEventSubscriber();
+            var eventSubscriber = new WeatherPublisher();
             var botCreater = new BotFactory();
 
             var rainBot = botCreater.CreateBot(BotType.RainBot, rainBotConfig);
             var sunBot = botCreater.CreateBot(BotType.SunBot, sunBotConfig);
             var snowBot = botCreater.CreateBot(BotType.SnowBot, snowBotConfig);
-            eventSubscriber.Subscribe("HumidityExceeded", rainBot);
-            eventSubscriber.Subscribe("TemperatureExceeded", sunBot);
-            eventSubscriber.Subscribe("TemperatureExceeded", snowBot);
+            eventSubscriber.Subscribe(rainBot);
+            eventSubscriber.Subscribe(sunBot);
+            eventSubscriber.Subscribe(snowBot);
 
             while (true)
             {
                 Console.WriteLine("Enter the weather data:");
                 var input = Console.ReadLine();
-                var weatherData = WeatherDataFactory.CreateReader(input);
+                var weatherData = WeatherDataParser.ParseInput(input);
                 var eventPublisher = new WeatherEventPublisher();
                 eventPublisher.PublishEvent("HumidityExceeded", weatherData);
                 eventPublisher.PublishEvent("TemperatureExceeded", weatherData);
                 eventPublisher.PublishEvent("TemperatureDropped", weatherData);
 
-                eventSubscriber.Unsubscribe("HumidityExceeded", rainBot);
+                eventSubscriber.Unsubscribe( rainBot);
                 eventSubscriber.Unsubscribe("TemperatureExceeded", sunBot);
                 eventSubscriber.Unsubscribe("TemperatureExceeded", snowBot);
             }
