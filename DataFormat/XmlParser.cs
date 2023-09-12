@@ -1,9 +1,10 @@
-﻿using System.Xml.Serialization;
+﻿using System.Text.RegularExpressions;
+using System.Xml.Serialization;
 namespace Weather_Monitoring.DataFormat
 {
-    public class XmlParser
+    public class XmlParser : IWetherDataParser
     {
-        public static WeatherData FromXml(string xml)
+        public WeatherData Parse(string xml)
         {
             var serializer = new XmlSerializer(typeof(WeatherData));
             try
@@ -17,6 +18,11 @@ namespace Weather_Monitoring.DataFormat
             {
                 return null;
             }
+        }
+
+        public bool IsSupportedFormat(string inputFormat)
+        {
+            return Regex.IsMatch(inputFormat.Trim(), @"^<.*>$");
         }
     }
 }
