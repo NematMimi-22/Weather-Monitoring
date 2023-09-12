@@ -17,10 +17,10 @@ namespace Weather_Monitoring.WeatherMonitoringTest.PublishSubscribeDPTest
             var bot = (IBot)Activator.CreateInstance(botType, new object[] { threshold, isActive, message });
 
             // Act
-            subscriber.Subscribe(eventName, bot);
+            subscriber.Subscribe(bot);
 
             // Assert
-            Assert.Contains(bot, WeatherEventSubscriber.subscribers[eventName]);
+            Assert.Contains(bot, WeatherEventSubscriber.subscribers);
         }
 
         [Theory]
@@ -33,13 +33,13 @@ namespace Weather_Monitoring.WeatherMonitoringTest.PublishSubscribeDPTest
             var subscriber = new WeatherEventSubscriber();
             var eventName = "Event1";
             var bot = (IBot)Activator.CreateInstance(botType, new object[] { threshold, isActive, message });
-            subscriber.Subscribe(eventName, bot);
+            subscriber.Subscribe(bot);
 
             // Act
-            subscriber.Unsubscribe(eventName, bot);
+            subscriber.Unsubscribe(bot);
 
             // Assert
-            Assert.DoesNotContain(bot, WeatherEventSubscriber.subscribers[eventName]);
+            Assert.DoesNotContain(bot, WeatherEventSubscriber.subscribers);
         }
     }
 }

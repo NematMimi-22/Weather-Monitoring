@@ -4,11 +4,11 @@ namespace Weather_Monitoring.DataFormat
 {
     public class JSONParser : IWetherDataParser
     {
-        public  WeatherData Parse(string json)
+        public  WeatherData Parse(string input)
         {
             try
             {
-                return JsonConvert.DeserializeObject<WeatherData>(json);
+                return JsonConvert.DeserializeObject<WeatherData>(input);
             }
             catch (JsonReaderException)
             {
@@ -16,9 +16,9 @@ namespace Weather_Monitoring.DataFormat
             }
         }
 
-        public bool IsSupportedFormat(string inputFormat)
+        public bool IsSupportedFormat(string input)
         {
-            return Regex.IsMatch(inputFormat.Trim(), @"^{.*}$");
+            return Regex.IsMatch(input.Trim(), @"^{.*}$");
         }
     }
 }
