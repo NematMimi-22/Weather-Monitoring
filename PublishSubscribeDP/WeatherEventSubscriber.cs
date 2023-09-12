@@ -3,23 +3,16 @@ namespace Weather_Monitoring.PublishSubscribeDP
 {
     public class WeatherEventSubscriber
     {
-        public static Dictionary<string, List<IBot>> subscribers = new Dictionary<string, List<IBot>>();
+        public static HashSet<IBot> subscribers = new();
 
-        public void Subscribe(string eventName, IBot bot)
+        public void Subscribe( IBot bot)
         {
-            if (!subscribers.ContainsKey(eventName))
-            {
-                subscribers[eventName] = new List<IBot>();
-            }
-            subscribers[eventName].Add(bot);
+            subscribers.Add(bot);
         }
 
-        public void Unsubscribe(string eventName, IBot bot)
+        public void Unsubscribe(IBot bot)
         {
-            if (subscribers.ContainsKey(eventName))
-            {
-                subscribers[eventName].Remove(bot);
-            }
+                subscribers.Remove(bot);
         }
     }
 }

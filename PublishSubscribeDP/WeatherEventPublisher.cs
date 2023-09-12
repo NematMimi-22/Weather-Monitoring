@@ -3,14 +3,11 @@ namespace Weather_Monitoring.PublishSubscribeDP
 {
     public class WeatherEventPublisher
     {
-        public void PublishEvent(string eventName, WeatherData weatherData)
+        public void Publish(WeatherData weatherData)
         {
-            if (WeatherEventSubscriber.subscribers.TryGetValue(eventName, out var subscribers))
+            foreach (var subscriber in WeatherEventSubscriber.subscribers)
             {
-                foreach (var bot in subscribers)
-                {
-                    bot.PerformAction(weatherData);
-                }
+                subscriber.PerformAction(weatherData);
             }
         }
     }
