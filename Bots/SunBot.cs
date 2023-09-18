@@ -16,13 +16,16 @@ namespace Weather_Monitoring.Bots
             this.message = message;
         }
 
-        public void PerformAction(WeatherData weatherData)
+        public bool PerformAction(WeatherData weatherData)
         {
-            if (weatherData.Temperature > TemperatureThreshold)
+            if (weatherData.Temperature > TemperatureThreshold && enabled)
             {
                 Console.WriteLine($"SunBot activated!");
                 Console.WriteLine($"{Name}: {message}");
+                return true;
+
             }
+            return false;
         }
     }
 }

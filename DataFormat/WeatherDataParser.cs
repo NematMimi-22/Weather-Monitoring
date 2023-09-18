@@ -9,9 +9,7 @@ namespace Weather_Monitoring.DataFormat
         {
             _parsers = parsers;
         }
-        public WeatherDataParser()
-        {
-        }
+
         public WeatherData ParseInput(string inputFormat)
         {
             var parser = _parsers.FirstOrDefault(parser => parser.IsSupportedFormat(inputFormat));
