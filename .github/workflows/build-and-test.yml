@@ -21,21 +21,21 @@ jobs:
         os: [windows-latest] # Specify the matrix just with the Windows operating system
 
     steps:
-    - uses: actions/checkout@v3 # Checkout the code from the repository
+    - uses: actions/checkout@v3 #Checkout the code from the repository
 
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v3 # Set up the .NET SDK
+      uses: actions/setup-dotnet@v3 #Set up the .NET SDK
       with:
-        dotnet-version: ${{ env.DOTNET_VERSION }} # Use the specified .NET SDK version
+        dotnet-version: ${{ env.DOTNET_VERSION }} #Use the specified .NET SDK version
 
     - name: Install dependencies
       run: dotnet restore # Restore project dependencies
       
     - name: Build
-      run: dotnet build --configuration Release --no-restore # Build the project in Release mode without restoring dependencies so assumes that project dependencies //are already in place 
+      run: dotnet build --configuration Release --no-restore #Build the project in Release mode without restoring dependencies so assumes that project dependencies are already in place 
 
     - name: Copy config.json
-      run: cp config.json bin/Debug/net6.0/ # Copy the "config.json" file to the build output directory
+      run: cp config.json bin/Debug/net6.0/ #Copy the "config.json" file to the build output directory
 
     - name: Test
-      run: dotnet test --no-restore --verbosity normal # Run tests with normal verbosity level which is moderate amount of information about the tests and their #progress
+      run: dotnet test --no-restore --verbosity normal # Run tests with normal verbosity level which is moderate amount of information about the tests and their progress
