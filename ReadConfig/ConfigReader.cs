@@ -5,13 +5,12 @@ namespace Weather_Monitoring.ReadConfig
     {
         public static BotConfig ReadConfig(string botName)
         {
-            var basePath = AppDomain.CurrentDomain.BaseDirectory;
+            var basePath = "config.json";
             Console.WriteLine(basePath);
             var configuration = new ConfigurationBuilder()
-                .SetBasePath(basePath)
-                .AddJsonFile("config.json")
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("config.json", optional: false, reloadOnChange: true)
                 .Build();
-
             var Threshold = GetThreshold(botName, configuration);
             var Message = configuration[$"{botName}:Message"];
             var Enabled = bool.Parse(configuration[$"{botName}:Enabled"]);
