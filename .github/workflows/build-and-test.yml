@@ -35,7 +35,7 @@ jobs:
       run: dotnet build --configuration Release --no-restore
 
     - name: Copy config.json
-      run: cp https://github.com/NematMimi-22/Weather-Monitoring/blob/test/config.json bin\Debug\net6.0\
+      run: cp https://github.com/NematMimi-22/Weather-Monitoring/blob/71d7bf035c303f42d2e323383e9ec065503cf718/config.json bin\Debug\net6.0\
     
     - name: Test
       run: dotnet test --no-restore --verbosity normal
