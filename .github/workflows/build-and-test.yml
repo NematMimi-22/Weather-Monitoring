@@ -1,41 +1,41 @@
-name: build and test
+name: build and test # Name of the GitHub actions workflow
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master" ] #Trigger the workflow when code is pushed to the "master" branch
   pull_request:
-    branches: [ "master" ]
+    branches: [ "master" ] #Trigger the workflow when a pull request is made to the "master" branch
     paths:
-      - '**.cs'
-      - '**.csproj'
+      - '**.cs'      #Trigger the workflow when changes are made to C# source code files
+      - '**.csproj'  #Trigger the workflow when changes are made to .csproj files
 
 env:
-  DOTNET_VERSION: '6.0.401' # The .NET SDK version to use
-
+  DOTNET_VERSION: '6.0.401' #Define environment variable for the .NET SDK version
 jobs:
   build-and-test:
 
-    name: build-and-test-${{matrix.os}}
-    runs-on: ${{ matrix.os }}
+    name: build-and-test-${{matrix.os}} #Set the job name dynamically based on the used operating system 
+    runs-on: ${{ matrix.os }} # Define the operating system for the job using a matrix
     strategy:
       matrix:
-        os: [windows-latest]
+        os: [windows-latest] # Specify the matrix just with the Windows operating system
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v3 # Checkout the code from the repository
+
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v3 # Set up the .NET SDK
       with:
-        dotnet-version: ${{ env.DOTNET_VERSION }}
+        dotnet-version: ${{ env.DOTNET_VERSION }} # Use the specified .NET SDK version
 
     - name: Install dependencies
-      run: dotnet restore
+      run: dotnet restore # Restore project dependencies
       
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build --configuration Release --no-restore # Build the project in Release mode without restoring dependencies so assumes that project dependencies //are already in place 
 
     - name: Copy config.json
-      run: cp config.json bin/Debug/net6.0/
+      run: cp config.json bin/Debug/net6.0/ # Copy the "config.json" file to the build output directory
 
     - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test --no-restore --verbosity normal # Run tests with normal verbosity level which is moderate amount of information about the tests and their #progress
