@@ -36,3 +36,4 @@ jobs:
 
     - name: Test
       run: dotnet test --no-restore --verbosity normal # Run tests with normal verbosity level which is moderate amount of information about the tests and their progress
+
