@@ -34,8 +34,5 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore #Build the project in Release mode without restoring dependencies so assumes that project dependencies are already in place 
 
-    - name: Copy config.json
-      run: cp config.json bin/Debug/net6.0/ #Copy the "config.json" file to the build output directory
-
     - name: Test
       run: dotnet test --no-restore --verbosity normal # Run tests with normal verbosity level which is moderate amount of information about the tests and their progress
